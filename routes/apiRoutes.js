@@ -29,9 +29,21 @@ module.exports = function(app) {
     });
   });
 
+// login in front-desk
+  app.post("/api/loginfrontdesk", passport.authenticate("local"), function(req, res) {
+      res.json("/frontdesk");
+  });
+  // login in service provider
+  app.post("/api/loginprovider", passport.authenticate("local"), function(req, res) {
+    res.json("/frontdesk");
+});
+
+
+
+
   // Route for logging user out
   app.get("/logout", function(req, res) {
-    // req.logout();
+    req.logout();
     res.redirect("/");
   });
 

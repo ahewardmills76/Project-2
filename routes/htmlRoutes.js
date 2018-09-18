@@ -25,7 +25,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("../views/customer.handlebars");
     }
-    res.render(path.join(__dirname, "../views/customer.handlebars"));
+    res.render(path.join(__dirname, "../views/index.handlebars"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
@@ -33,6 +33,32 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, function(req, res) {
     res.render(path.join(__dirname, "../views/customer.handlebars"));
   });
+
+
+// Login fornt-desk
+app.get("/loginfrontdesk", function(req, res) {
+  if (req.user) {
+    res.redirect("../views/frontdesk.handlebars");
+  }
+  res.render(path.join(__dirname, "../views/frontdesk.handlebars"));
+});
+app.get("/frontdesk", isAuthenticated, function(req, res) {
+  res.render(path.join(__dirname, "../views/frontdesk.handlebars"));
+});
+
+
+// Login service provider
+app.get("/loginprovider", function(req, res) {
+  if (req.user) {
+    res.redirect("../views/provider.handlebars");
+  }
+  res.render(path.join(__dirname, "../views/provider.handlebars"));
+});
+app.get("/provider", isAuthenticated, function(req, res) {
+  res.render(path.join(__dirname, "../views/provider.handlebars"));
+});
+
+
 
   app.get("/logout", function(req, res) {
     res.render(path.join(__dirname, "../views/index.handlebars"));
@@ -107,13 +133,13 @@ module.exports = function(app) {
 
 
 
-  app.get("/frontdesk", function(req, res) {
-    res.render("frontdesk");
+  // app.get("/frontdesk", function(req, res) {
+  //   res.render("frontdesk");
 
 //for each create HTML card and append picture, name on it
 
 //for each service providor, append html of availability
-  });
+  // });
 
 
 
